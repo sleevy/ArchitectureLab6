@@ -27,7 +27,7 @@ public class FetchCPU
 	
 	
 	
-	public int boolsToInt(boolean[] b) {
+	public static int boolsToInt(boolean[] b) {
 		int val = 0;
 		for(int pow = 0; pow < b.length; pow++) {
 			if(b[pow])
@@ -36,7 +36,7 @@ public class FetchCPU
 		return val;
 	}
 	
-	public byte boolsToByte(boolean[] b) {
+	public static byte boolsToByte(boolean[] b) {
 		byte val = 0;
 		
 		String s = "";

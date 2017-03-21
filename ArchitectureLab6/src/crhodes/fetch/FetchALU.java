@@ -361,6 +361,7 @@ public class FetchALU
 	{
 		setA(ssss);
 		setB(dddd);
+		//A[i] * B + A<< * B + A<< * B etc etc
 		for(int i = 0; i < A.length; i++) {
 			for(int j = 0; j < B.length; j++) {
 				//B[i] * A[i]
@@ -476,4 +477,44 @@ public class FetchALU
 		}
 		return true;
 	}
+	
+	public void testALU() {
+		FetchPSW tPSW = new FetchPSW();
+		boolean[] test = new boolean[8];
+		boolean[] aTest = new boolean[8];
+		boolean[] bTest = new boolean[8];
+		
+		int val;
+		
+		clrOp(test, tPSW);
+		String s;
+		for(int i = 0; i < 300; i++) {
+			incOp(test, tPSW);
+			val = FetchCPU.boolsToInt(test);
+			s = String.format("%03d", val);
+			System.out.print(s + " ");
+			tPSW.print();
+		}
+		
+		test[0] = true;
+		test[1] = true;
+		test[2] = true;
+		test[3] = true;
+		test[4] = true;
+		test[5] = true;
+		test[6] = true;
+		test[7] = true;
+		
+		clrOp(test, tPSW);
+		for(int i = 0; i < 300; i++) {
+			decOp(test, tPSW);
+			val = FetchCPU.boolsToInt(test);
+			s = String.format("%03d", val);
+			System.out.print(s + " ");
+			tPSW.print();
+		}
+		
+	}
+	
+	
 }
