@@ -12,16 +12,45 @@ public class FetchMem
 	}
 	
 	public void setByte(int index) {
-		
+		if(index > v.length) {
+			throw new IndexOutOfBoundsException("index " + index + " is out of bounds");
+		}
+		else
+			v[index] = 127;
+	}
+	
+	public void setByte(int index, byte data) {
+		if(index > v.length) {
+			throw new IndexOutOfBoundsException("index " + index + " is out of bounds");
+		}
+		else
+			v[index] = data;
 	}
 	
 	public void clrByte(int index){
-		
+		if(index > v.length) {
+			throw new IndexOutOfBoundsException("index " + index + " is out of bounds");
+		}
+		else
+			v[index] = 0;
+	}
+	
+	public byte getByte(int index) {
+		if(index > v.length) {
+			throw new IndexOutOfBoundsException("index " + index + " is out of bounds");
+		}
+		else
+			return v[index];
 	}
 	
 	public void print(int index) {
-		
+		if(index > v.length) {
+			throw new IndexOutOfBoundsException("index " + index + " is out of bounds");
+		}
+		else
+			System.out.println("MEM: " + index + ": " + v[index]);
 	}
+	
 	
 	public void testMem() {
 		

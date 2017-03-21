@@ -56,6 +56,19 @@ public class FetchRegister
 		return v;
 	}
 	
+	public void setBits(byte val) {
+		setBits(boolsFromByte(val));
+	}
+	
+	public boolean[] boolsFromByte(byte b) {
+		String s = Integer.toBinaryString(new Byte(b).intValue());
+		boolean[] out = new boolean[8];
+		for(int i = 0; i < out.length; i++) {
+			out[out.length - 1 - i] = s.charAt(i) == '1' ? true:false;
+		}
+		return out;
+	}
+	
 	public void setBits(boolean[] vals) {
 		for(int i = 0; i < v.length; i++) {
 			v[i] = vals[i];

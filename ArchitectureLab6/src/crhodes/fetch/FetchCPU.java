@@ -25,7 +25,28 @@ public class FetchCPU
 		psw = new FetchPSW();
 	}
 	
-	public void executeProgram() {
-		
+	
+	
+	public int boolsToInt(boolean[] b) {
+		int val = 0;
+		for(int pow = 0; pow < b.length; pow++) {
+			if(b[pow])
+				val += Math.pow(2, pow);
+		}
+		return val;
 	}
+	
+	public byte boolsToByte(boolean[] b) {
+		byte val = 0;
+		
+		String s = "";
+		for(int i = 0; i < b.length; i++) {
+			s = (b[i] ? "1":"0") + s;
+		}
+		
+		val = Byte.valueOf(s, 2);
+		return val;
+	}
+	
+	
 }

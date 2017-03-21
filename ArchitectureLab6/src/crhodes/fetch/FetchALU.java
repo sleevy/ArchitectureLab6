@@ -356,14 +356,21 @@ public class FetchALU
 		else if(overflow) psw.setC();
 	}
 
+	
 	public void mulOp(boolean[] ssss, boolean[] dddd, FetchPSW psw)
 	{
-
+		setA(ssss);
+		setB(dddd);
+		for(int i = 0; i < A.length; i++) {
+			for(int j = 0; j < B.length; j++) {
+				//B[i] * A[i]
+			}
+		}
 	}
 
 	public void divOp(boolean[] ssss, boolean[] dddd, FetchPSW psw)
 	{
-
+		
 	}
 
 	public void movOp(boolean[] ssss, boolean[] dddd, FetchPSW psw)
@@ -394,6 +401,9 @@ public class FetchALU
 		setA(new boolean[] {true});
 		setB(dddd);
 		addSubtract(false);
+		for(int i = 0; i < S.length; i++) {
+			dddd[i] = S[i];	
+			}
 		psw.setFlags(false, false, false, false);
 		if(isZero()) psw.setZ();
 		else if(overflow) psw.setV();
@@ -403,6 +413,9 @@ public class FetchALU
 		setA(dddd);
 		setB(new boolean[] {true});
 		addSubtract(true);
+		for(int i = 0; i < S.length; i++) {
+		dddd[i] = S[i];	
+		}
 		psw.setFlags(false, false, false, false);
 		if(isZero()) psw.setZ();
 		else if(overflow) psw.setN();
@@ -410,19 +423,51 @@ public class FetchALU
 	}
 	
 	public void negOp(boolean[] dddd, FetchPSW psw) {
+		setA(dddd);
+		negate();
+		for(int i = 0; i < A.length; i++) {
+			dddd[i] = A[i];
+		}
+		psw.setFlags(false, false, false, false);
 		
 	}
 	
 	public void bneOp(boolean[] dddd, FetchPSW psw) {
-		
+		if(isZero()) psw.setZ();
+		//TODO: I have no idea why this is in this class
 	}
 	
 	public void beqOp(boolean[] dddd, FetchPSW psw) {
-		
+		if(isZero()) psw.setZ();
+		//TODO: what?
 	}
 	
 	public void hltOp(boolean[] dddd, FetchPSW psw) {
 		System.exit(0);
+	}
+	
+	public void shiftLeft(boolean[] vals, FetchPSW psw) {
+		if(vals[vals.length-1]) psw.setV();
+		setA(vals);
+		for(int i = A.length-1; i > 0 ;i--) {
+			A[i] = A[i-1];
+		}
+		A[0] = false;
+		for(int i = 0; i < A.length; i++) {
+			vals[i] = A[i];
+		}
+	}
+	
+	public void shiftRight(boolean[] vals, FetchPSW psw) {
+		setA(vals);
+		A[A.length-1] = false;
+		for(int i = 0; i < A.length - 1; i++) {
+			A[i] = A[i+1];
+		}
+		
+		for(int i = 0; i < A.length; i++) {
+			vals[i] = A[i];
+		}
 	}
 	
 	public boolean isZero() {
