@@ -32,7 +32,34 @@ public class FetchCPU
 	}
 	
 	public void loadTestProgram() {
+		String theLine = "";
+		//set up program
+		theLine="1111 0000 0000";
+		prog.setData(0, stringToBools(theLine));
 		
+//		theLine="";
+//		prog.setData(1, stringToBools(theLine));
+//		
+//		
+//		//initialize memory
+//		theLine="";
+//		data.setData(100, stringToBools(theLine));
+//		
+//		theLine="";
+//		data.setData(101, stringToBools(theLine));
+		
+	}
+	
+	public boolean[] stringToBools(String input) {
+		input.replace(" ", "");
+		if(input.length() == 0) return new boolean[] {false};
+		
+		boolean[] out = new boolean[input.length()];
+		for(int i = 0; i < out.length; i++) {
+			out[i] = '1' == input.charAt(input.length()-1-i) ? true:false;
+		}
+		
+		return out;
 	}
 	
 	public void executeProgram() {
