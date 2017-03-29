@@ -435,15 +435,19 @@ public class FetchALU
 	
 	public void bneOp(boolean[] dddd, FetchPSW psw) {
 		if(isZero()) psw.setZ();
-		//TODO: I have no idea why this is in this class
+		
+		
+		
 	}
 	
 	public void beqOp(boolean[] dddd, FetchPSW psw) {
 		if(isZero()) psw.setZ();
-		//TODO: what?
+		
+		
 	}
 	
 	public void hltOp(boolean[] dddd, FetchPSW psw) {
+		System.out.println("Halting...");
 		System.exit(0);
 	}
 	

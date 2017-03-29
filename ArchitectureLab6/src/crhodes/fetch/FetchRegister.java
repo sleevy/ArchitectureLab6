@@ -56,8 +56,13 @@ public class FetchRegister
 		return v;
 	}
 	
-	public void setBits(byte val) {
-		setBits(boolsFromByte(val));
+	public void setData(boolean[] newData) {
+		for(int i = 0; i < v.length; i++) {
+			if(i < newData.length) {
+				v[i] = newData[i];
+			} else
+				v[i] = false;
+		}
 	}
 	
 	public boolean[] boolsFromByte(byte b) {
